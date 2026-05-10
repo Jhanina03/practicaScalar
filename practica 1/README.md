@@ -45,6 +45,7 @@ npm -v
 ```bash
 git clone <URL-DEL-REPO>
 cd scalar-api-test
+cd "practica 1"
 ```
 
 ### 2. Instalar dependencias
