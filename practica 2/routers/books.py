@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Path, Query, Response, status
+from fastapi import APIRouter, Body, Depends, HTTPException, Path, Query, Response, status
 from typing import Optional
 
 from models import Book, BookCreate, BookUpdate, ErrorResponse, Genre
@@ -59,7 +59,35 @@ def get_book(book_id: int = Path(..., description="ID del libro", examples=[1]))
         401: {"model": ErrorResponse, "description": "API key invalida"},
     },
 )
-def create_book(payload: BookCreate, _: str = Depends(require_api_key)):
+def create_book(
+    payload: BookCreate = Body(
+        ...,
+        openapi_examples={
+            "novela_clasica": {
+                "summary": "Novela clasica",
+                "description": "Ejemplo de novela clasica espaniola",
+                "value": {
+                    "title": "El Quijote",
+                    "author": "Miguel de Cervantes",
+                    "year": 1605,
+                    "genre": "fiction",
+                    "pages": 863,
+                },
+            },
+            "scifi_moderno": {
+                "summary": "Sci-Fi moderno",
+                "value": {
+                    "title": "Project Hail Mary",
+                    "author": "Andy Weir",
+                    "year": 2021,
+                    "genre": "scifi",
+                    "pages": 476,
+                },
+            },
+        },
+    ),
+    _: str = Depends(require_api_key),
+):
     new_id = get_next_id()
     book = Book(id=new_id, **payload.model_dump())
     books_db[new_id] = book

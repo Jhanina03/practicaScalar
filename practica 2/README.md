@@ -4,8 +4,6 @@ Documentacion interactiva de una API REST en Python (FastAPI) usando Scalar.
 **Complementa la practica 1** (NestJS) cubriendo features de Scalar no vistas alli:
 auth, file uploads, multiples ejemplos, endpoints deprecados, config UI avanzada.
 
-> Para profesores: leer `GUIA_INSTRUCTOR.md` (recorrido paso a paso, 30-45 min).
-
 ---
 
 ## Requisitos
@@ -129,7 +127,7 @@ practica 2/
 
 Tienen 6-8 min:
 
-1. Agregar un **tercer ejemplo** (genero `biography`) en `BookCreate` dentro de `models.py`.
+1. Agregar un **tercer ejemplo** (genero `biography`) dentro de `openapi_examples=` en `routers/books.py` (endpoint `create_book`).
 2. Abrir **Scalar Desktop**, importar `http://localhost:8000/openapi.json`, cargar API Key `demo-key-123`.
 3. Desde Desktop, hacer `POST /books` con su ejemplo nuevo. Verificar `201` y luego `GET /books`.
 

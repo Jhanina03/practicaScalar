@@ -29,32 +29,9 @@ class BookCreate(BaseModel):
     genre: Genre = Field(..., examples=[Genre.scifi])
     pages: int = Field(..., examples=[328])
 
-    model_config = {
-        "json_schema_extra": {
-            "examples": [
-                {
-                    "summary": "Novela clasica",
-                    "value": {
-                        "title": "El Quijote",
-                        "author": "Miguel de Cervantes",
-                        "year": 1605,
-                        "genre": "fiction",
-                        "pages": 863,
-                    },
-                },
-                {
-                    "summary": "Sci-Fi moderno",
-                    "value": {
-                        "title": "Project Hail Mary",
-                        "author": "Andy Weir",
-                        "year": 2021,
-                        "genre": "scifi",
-                        "pages": 476,
-                    },
-                },
-            ]
-        }
-    }
+    # Nota: para mostrar MULTIPLES ejemplos como tabs/dropdown en Scalar usamos
+    # `openapi_examples=` en `Body(...)` del endpoint (ver routers/books.py).
+    # Aqui solo dejamos un example simple por campo para autocompletar el body por defecto.
 
 
 class BookUpdate(BaseModel):
